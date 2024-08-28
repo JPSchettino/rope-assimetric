@@ -129,7 +129,7 @@ def main(args):
         target_modules = find_all_linear_names(model)
         accelerator.print(f"LoRA target modules: {target_modules}")
         peft_config = LoraConfig(task_type=TaskType.CAUSAL_LM, inference_mode=False,
-                                 r=16, lora_alpha=64, lora_dropout=0.05, target_modules=target_modules)
+                                 r=16, lora_alpha=64, lora_dropout=0.05, target_modules=['q_proj'])
         model = get_peft_model(model, peft_config)
         model.print_trainable_parameters()
 
